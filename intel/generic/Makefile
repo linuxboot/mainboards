@@ -3,10 +3,10 @@ default: build
 build:
 	echn getstuff, uroot, kernel, or image.bin
 
-image.bin:  kernel
+excise.bin:  image.bin
 	utk \
 		  -xzPath  /usr/bin/xz \
-		ROM.bin \
+		image.bin \
 	        remove Ip.*  \
                 remove Tcp.*  \
                 remove Usb.*  \
@@ -28,9 +28,21 @@ image.bin:  kernel
                 remove Whea.* \
                 remove .*Pxe.* \
                 remove Ata.* \
-		remove AMITSE \
-		replace_pe32 FullShell kernel  \
-	save image.bin
+	save excise.bin
+
+image.bin:  kernel
+	utk \
+		  -xzPath  /usr/bin/xz \
+		ROM.bin \
+	        remove Ip.*  \
+                remove Tcp.*  \
+                remove Usb.*  \
+                remove Udp.*  \
+                remove Dhcp.*  \
+                remove .np.*  \
+                remove .tftp.*  \
+                remove Http.* \
+                remove .*Dns.* \
 
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -55,6 +67,7 @@ netbooturoot:
 
 uroot:
 	go run github.com/u-root/u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/exp/rush github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp
+	go run github.com/u-root/u-root -build=bb 
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
