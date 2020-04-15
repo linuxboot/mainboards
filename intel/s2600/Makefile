@@ -54,11 +54,12 @@ edk2.bin: dxeremove.bin
 	echo Note, this inserts the edk2 bds and shell
 	echo Only flash this image if you have an sf100.
 	echo It will not be able to boot anything.
-	utk \
-		-xzPath  /usr/bin/xz \
-		$< \
-		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
-		save $@
+# mark utk here, since s2600.image has this two FVs.
+#	utk \
+#		-xzPath  /usr/bin/xz \
+#		$< \
+#		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
+#		save $@
 
 dxeremove.bin: hap.bin
 	echo note, we remove DXE to the point the image is not viable
@@ -135,7 +136,8 @@ dxeremove.bin: hap.bin
 		save $@
 		chmod a-w $@
 
-hap.bin: tighten.bin
+# Skip ME/BIOS region check.
+hap.bin: image.bin
 	cp $< $@
 	me_cleaner.py -s $@
 	chmod a-w $@
