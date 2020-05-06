@@ -166,8 +166,10 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 
 flashinitramfs.cpio: Makefile
 	go run github.com/u-root/u-root  -o $@ -build=bb \
-		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
+		-uinitcmd=/bbin/systemboot \
+		github.com/u-root/u-root/cmds/boot/systemboot \
+		github.com/u-root/u-root/cmds/boot/fbnetboot \
+		github.com/u-root/u-root/cmds/boot/localboot \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
