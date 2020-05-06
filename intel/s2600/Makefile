@@ -207,7 +207,7 @@ testflashkernel: flashkernel
 	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
 
 # These stanzas fetch code.
-fetch: getkernel geturoot getfiano getrom getmecleaner
+fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
@@ -224,10 +224,6 @@ getrom:
 geturoot:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
-
-getmecleaner:
-	git clone https://github.com/corna/me_cleaner.git me_cleaner
-	cp me_cleaner/me_cleaner.py .
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
