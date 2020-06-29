@@ -10,13 +10,6 @@ image.bin:  kernel
 	utk \
 		  -xzPath  /usr/bin/xz \
 		ROM.bin \
-                remove Whea.* \
-		remove HPAHCI \
-		remove HPATAPI \
-		remove HpPostCodeWorkerSmm \
-		remove HpPostCodeWorkerDxe \
-		remove LegacyBiosPlatform \
-		remove legacy16 \
 		remove TraceHubStatusCodeHandlerRuntimeDxe \
 		remove TraceHubStatusCodeHandlerSmm \
 		remove StatusCodeHandlerRuntimeDxeUsb \
@@ -47,36 +40,24 @@ image.bin:  kernel
 		remove IntelligentProvisioningApp \
 		remove ErrorInformationApp \
 		remove ImlViewApp \
-		remove EfiDiags \
 		remove EmbeddedDiagsApp \
 		remove HpPlotPciRebootTestDriver \
-		remove KeyManagement \
-		remove HpKeyManagerDxe \
-		remove NvDimmSupport \
 		remove HpNvDimmDxe \
 		remove HpNvDimmBlkIoDxe \
 		remove NvDimmFwUpdate \
-		remove HpType10NvdimmDxe \
 		remove HpType10NvdimmPowerMonitorDxe \
 		remove FirmwarePerformanceSmm \
 		remove HpType10NvdimmCommonDataDxe \
-		remove BigBend \
 		remove HpNvDimmMemScan \
 		remove HpNvDimmTelemetryDxe \
 		remove BackupRestore \
 		remove HpBackupRestoreDxe \
 		remove HpSecureErase \
 		remove HpSecureEraseDxe \
-		remove Csm \
 		remove TerminalDxe \
 		remove IsaSerialDxe \
 		remove LegacyBiosDxe \
 		remove HpLegacyBootDxe \
-		remove VFPY \
-		remove USBHIGH \
-		remove HPAHCI \
-		remove HPATAPI \
-		remove legacy16 \
 		remove LegacyBiosPlatform \
 		remove HpPostCodeWorkerDxe \
 		remove HpPostCodeWorkerSmm \
