@@ -17,7 +17,6 @@ image.bin:  kernel
 		remove HpBootMenuApp \
 		remove TxtDxe \
 		remove HstiIhvProviderDxe \
-		remove VideoDxe \
 		remove LegacyRegion2 \
 		remove EbcDxe \
 		remove LegacyInterrupt \
@@ -61,7 +60,7 @@ image.bin:  kernel
 		remove LegacyBiosPlatform \
 		remove HpPostCodeWorkerDxe \
 		remove HpPostCodeWorkerSmm \
-		replace_pe32 FullShell kernel  \
+		replace_pe32 Shell kernel  \
 	save image.bin
 
 kernel: uroot bzImage
