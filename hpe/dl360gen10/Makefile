@@ -10,6 +10,7 @@ image.bin:  kernel
 	utk \
 		  -xzPath  /usr/bin/xz \
 		ROM.bin \
+<<<<<<< HEAD
 		remove TraceHubStatusCodeHandlerRuntimeDxe \
 		remove TraceHubStatusCodeHandlerSmm \
 		remove StatusCodeHandlerRuntimeDxeUsb \
