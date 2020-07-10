@@ -90,6 +90,7 @@ netbooturoot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
+
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
@@ -112,6 +113,7 @@ uroot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
+
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
