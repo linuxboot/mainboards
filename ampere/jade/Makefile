@@ -21,7 +21,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=arm64 u-root  -o $@ -build=bb all
+	GOARCH=arm64 u-root -o $@ -build=bb all github.com/u-root/u-root/cmds/exp/{acpicat,acpigrep,disk_unlock,dmidecode,ipmidump}
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
@@ -57,7 +57,7 @@ flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp linux/arch/arm64/boot/Image $@
 
 testflashkernel: flashkernel
-	qemu-system-arm -machine ast2600-evb -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
+	qemu-system-aarch64 -machine virt -cpu cortex-a57 -kernel flashkernel -nographic -initrd flashinitramfs.cpio.lzma -append "console=ttyAMA0,115200 keep_bootcon"
 
 # These stanzas fetch code.
 fetch: getkernel geturoot 
