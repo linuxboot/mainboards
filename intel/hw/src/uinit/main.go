@@ -68,6 +68,7 @@ func main() {
 			bootcmds = append(bootcmds, exec.Command(f[0], args...))
 		}
 	}
+	bootcmds = append(bootcmds, exec.Command("boot","/dev/sda1"))
 	for _, c := range bootcmds {
 		v("Run %v", c)
 		c.Stdout, c.Stderr = os.Stdout, os.Stderr
