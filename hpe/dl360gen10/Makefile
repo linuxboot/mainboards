@@ -98,7 +98,7 @@ netbooturoot:
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
-	cp *lzma linux
+	cp *lzma linux/
 
 uroot:
 	u-root -build=bb -uinitcmd="hostname dl360Gen10" \
@@ -122,6 +122,9 @@ uroot:
 		github.com/u-root/u-root/cmds/boot/*
 
 	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux/
 
 injectkeys: 
 ifneq ($(KEYPATH),"")
