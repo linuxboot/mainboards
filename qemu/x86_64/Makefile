@@ -10,7 +10,7 @@ flashinitramfs.cpio:
 	github.com/u-root/u-root/cmds/core/pci \
 	github.com/u-root/u-root/cmds/core/wget
 
-flashkernel: flash.config
+flashkernel: flash.config flashinitramfs.cpio
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
