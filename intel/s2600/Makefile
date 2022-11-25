@@ -155,25 +155,25 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run github.com/u-root/u-root  -o $@ -build=bb \
+	go run $(value GO_PATH)/u-root/u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
+		$(value GO_PATH)/u-root/u-root/cmds/boot/pxeboot \
+		$(value GO_PATH)/u-root/u-root/cmds/core/cat \
+		$(value GO_PATH)/u-root/u-root/cmds/core/elvish \
+		$(value GO_PATH)/u-root/u-root/cmds/core/init \
+		$(value GO_PATH)/u-root/u-root/cmds/core/ip \
+		$(value GO_PATH)/u-root/u-root/cmds/core/ls \
+		$(value GO_PATH)/u-root/u-root/cmds/core/kexec \
+		$(value GO_PATH)/u-root/u-root/cmds/core/pci \
+		$(value GO_PATH)/u-root/u-root/cmds/core/wget \
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	go run $(value GO_PATH)/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+		$(value GO_PATH)/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
@@ -181,7 +181,7 @@ cpu.cpio.lzma: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	go run github.com/u-root/u-root -o sshd.cpio -build=bb \
+	go run $(value GO_PATH)/u-root/u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files ../../class_key.pub:authorized_keys \
 		-files ../../classhostkey:id_rsa \
@@ -223,7 +223,7 @@ getrom:
 	echo and cp it to image.bin
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+#	go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

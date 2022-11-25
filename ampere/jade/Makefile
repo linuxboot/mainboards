@@ -70,7 +70,7 @@ getkernel:
 
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+#	go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
