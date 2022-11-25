@@ -1,14 +1,16 @@
+GO_PATH := $(shell go env GOPATH)
+
 flashinitramfs.cpio:
 	u-root -o $@ \
-	github.com/u-root/u-root/cmds/boot/pxeboot \
-	github.com/u-root/u-root/cmds/core/cat \
-	github.com/u-root/u-root/cmds/core/elvish \
-	github.com/u-root/u-root/cmds/core/init \
-	github.com/u-root/u-root/cmds/core/ip \
-	github.com/u-root/u-root/cmds/core/ls \
-	github.com/u-root/u-root/cmds/core/kexec \
-	github.com/u-root/u-root/cmds/core/pci \
-	github.com/u-root/u-root/cmds/core/wget
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/boot/pxeboot \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/cat \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/elvish \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/init \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ip \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ls \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/kexec \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/pci \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/wget
 
 flashkernel: flash.config flashinitramfs.cpio
 	cp $< linux/.config
