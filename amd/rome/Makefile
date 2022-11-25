@@ -36,6 +36,8 @@
 # sshdkernel and cpukernel are very similar,
 # so doing builds in this order minimizes kernel
 # change between them.
+GO_PATH := $(shell go env GOPATH)
+
 default: flash sshdkernel cpukernel
 
 flash: tiny.bin
@@ -377,31 +379,31 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 flashinitramfs.cpio: Makefile
 	u-root  -o $@ \
 		-uinitcmd=/bbin/console \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/boot/boot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/io \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
-		github.com/u-root/u-root/cmds/exp/console \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/boot/pxeboot \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/boot/boot \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/cat \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/elvish \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/init \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/io \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ip \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ls \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/kexec \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/pci \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/wget \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/console \
 
 oflashinitramfs.cpio: Makefile
 	u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/boot/pxeboot \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/cat \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/elvish \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/init \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ip \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ls \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/kexec \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/pci \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/wget \
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
@@ -409,11 +411,11 @@ oflashinitramfs.cpio: Makefile
 cpu.cpio.lzma: Makefile
 	u-root -o cpu.cpio -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="rush" \
-		github.com/u-root/u-root/cmds/exp/rush \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/io \
-		github.com/u-root/u-root/cmds/core/cat 
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/rush \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/init \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/pci \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/io \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/cat 
 	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
@@ -464,7 +466,7 @@ getrom:
 	echo and cp it to image.bin
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+#	go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

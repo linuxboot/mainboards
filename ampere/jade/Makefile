@@ -7,6 +7,7 @@
 # EFI stub: Booting Linux Kernel...
 # EFI stub: Generating empty DTB
 # EFI stub: Exiting boot services and installing virtual address map...
+GO_PATH := $(shell go env GOPATH)
 
 default: flashkernel
 

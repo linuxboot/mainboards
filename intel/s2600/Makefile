@@ -32,6 +32,7 @@
 #
 # You can test the flash image kernel with qemu
 # make flashtest
+GO_PATH := $(shell go env GOPATH)
 
 default: sshdkernel flash cpukernel
 
