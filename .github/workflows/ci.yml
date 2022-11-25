@@ -46,7 +46,7 @@ jobs:
           # - intel-generic
           # - intel-hw
           # - intel-minplatform
-          # - intel-s2600
+          - intel-s2600
           # - lenovo-hr630
           # - lenovo-sr630
           # - lenovo-thinkpad

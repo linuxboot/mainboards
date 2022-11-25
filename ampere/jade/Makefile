@@ -21,7 +21,14 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=arm64 u-root -o $@ -build=bb all github.com/u-root/u-root/cmds/exp/acpicat github.com/u-root/u-root/cmds/exp/acpigrep github.com/u-root/u-root/cmds/exp/disk_unlock github.com/u-root/u-root/cmds/exp/dmidecode github.com/u-root/u-root/cmds/exp/ipmidump
+	GOARCH=arm64 u-root -o $@ \
+	-uroot-source=$(value GO_PATH)/src/github.com/u-root/u-root \
+	-build=bb all \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/acpicat \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/acpigrep \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/disk_unlock \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/dmidecode \
+	$(value GO_PATH)/src/github.com/u-root/u-root/cmds/exp/ipmidump
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
