@@ -70,7 +70,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
         id: go
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
       # access it.
