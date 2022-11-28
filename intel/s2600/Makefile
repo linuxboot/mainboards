@@ -156,17 +156,17 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run $(value GO_PATH)/src/u-root/u-root  -o $@ -build=bb \
+	go run $(value GO_PATH)/src/github.com/u-root/u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
-		$(value GO_PATH)/src/u-root/u-root/cmds/boot/pxeboot \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/cat \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/elvish \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/init \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/ip \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/ls \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/kexec \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/pci \
-		$(value GO_PATH)/src/u-root/u-root/cmds/core/wget \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/boot/pxeboot \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/cat \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/elvish \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/init \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ip \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/ls \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/kexec \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/pci \
+		$(value GO_PATH)/src/github.com/u-root/u-root/cmds/core/wget \
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
