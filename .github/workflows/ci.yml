@@ -89,7 +89,7 @@ jobs:
           make fetch
           make flashkernel
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.mainboard }}
           path: |
