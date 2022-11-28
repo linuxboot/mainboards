@@ -27,7 +27,7 @@ fetch: getkernel geturoot
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.10 https://github.com/torvalds/linux
+	git clone --depth=1 -b v5.8 https://github.com/torvalds/linux
 
 geturoot:
 	go get -u github.com/u-root/u-root
