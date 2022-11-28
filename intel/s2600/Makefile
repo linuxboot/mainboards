@@ -156,7 +156,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run $(value GO_PATH)/u-root/u-root  -o $@ -build=bb \
+	go run $(value GO_PATH)/src/u-root/u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
 		$(value GO_PATH)/u-root/u-root/cmds/boot/pxeboot \
 		$(value GO_PATH)/u-root/u-root/cmds/core/cat \
